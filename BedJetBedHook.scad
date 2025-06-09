@@ -20,8 +20,8 @@ difference() {
     }
     translate([0,0,-pipeOverlap-pipeOD*1.5])
     cylinder(h=pipeOverlap*2+pipeOD*1.5, r=pipeOD/2);
-    translate([-pipeOD/2, pipeOD/2+wallThickness, -pipeOverlap-pipeOD*1.5])
-    cube([pipeOD+wallThickness, bedDepth, pipeOverlap+pipeOD*1.5]);
+    translate([-pipeOD/2-wallThickness, pipeOD/2+wallThickness, -pipeOverlap-pipeOD*1.5])
+    #cube([pipeOD+wallThickness*2, bedDepth, pipeOverlap+pipeOD*1.5]);
     
     //pipe clamp split
     translate([-wallThickness/2, -pipeOD/2-wallThickness,-pipeOD*1.5])
