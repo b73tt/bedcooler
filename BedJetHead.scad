@@ -46,14 +46,15 @@ difference() {
 
 
 // internal brace to keep the face from squashing
-hull() {
-translate([-wallThickness/2, -pipeOD/2, 0])
-cube([wallThickness, pipeOD, 1]);
+// these dimensions are wrong
+#hull() {
+translate([-wallThickness/2, -pipeOD/2-wallThickness, 0])
+#cube([wallThickness, pipeOD+wallThickness, 1]);
 
-translate([-wallThickness/2,-80-wallThickness, faceDepth+pipeOD/4+faceForward+pipeOD/faceSquashFactor+wallThickness])
-cube([wallThickness, faceDepth, 1]);
+translate([-wallThickness/2,-80-wallThickness*2, faceDepth+pipeOD/4+faceForward+pipeOD/faceSquashFactor+wallThickness*2])
+cube([wallThickness, faceDepth-wallThickness, 1]);
     translate([-wallThickness/2,-80-wallThickness, faceDepth+pipeOD/4+faceForward+wallThickness])
-cube([wallThickness, faceDepth, 1]);
+cube([wallThickness, faceDepth+1, 1]);
     
 }
 
