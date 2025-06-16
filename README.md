@@ -2,7 +2,7 @@
 
 This is a test prototype of a home made bed cooler, that blows cold air at your feet when they get too hot. I don't know if it'll work.
 
-![CAD image](picture.png)
+![CAD image](assembled.png)
 
 The STL files expect a MALM bed from Ikea and a 75mm OD PVC pipe, cut to an appropriate length.
 For my MALM bed and Ikea mattress, this length is 28cm.
@@ -13,6 +13,9 @@ I'm using a Wemos D1 mini clone microcontroller, a DHT11 temperature sensor, and
 
 This project is in no way ready for you to just build one unless you're comfortable with tweaking all the parts.
 
+## 3D printing intended orientation
+
+![CAD image](printing-orientation.png)
 
 ## MQTT topics
 
