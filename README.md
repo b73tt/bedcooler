@@ -23,6 +23,8 @@ This project is in no way ready for you to just build one unless you're comforta
 
 **BedCooler/SetTriggerTemp**: set the degrees Celsius to turn the fan on at
 
+**BedCooler/SetTriggerHumidity**: set the relative humidity (%) to turn the fan on at
+
 **BedCooler/SetMode**: set this as On, Off, or Auto.
 On turns on the fan, Off turns off the fan, Auto turns on the fan when the temperature is greater than the Trigger temp (off otherwise)
 
@@ -30,6 +32,6 @@ On turns on the fan, Off turns off the fan, Auto turns on the fan when the tempe
 
 **BedCooler/Temperature**: In Auto mode, this will publish the current temperature every 30 seconds
 
-**BedCooler/Humidity**: In Auto mode, this will publish the current humidity every 30 seconds (currently unused but maybe a humidistat function is a good idea for sweaty people)
+**BedCooler/Humidity**: In Auto mode, this will publish the current humidity every 30 seconds
 
 

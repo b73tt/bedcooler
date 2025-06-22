@@ -14,7 +14,9 @@ const int dhtType = DHT11;
 
 // defaults, we can set these later (and have the MQTT server retain them)
 byte fanspeed = 128;
-float triggerTemp = 32.0;
+float triggerTemp = 22.0;
+int triggerHumidity = 70;
+
 byte mode = 0; //0 = Off, 1= Auto, 2 = On
 
 int iteration = 0;
@@ -48,6 +50,10 @@ void callback(char* topic, byte* payload, unsigned int length) {
     triggerTemp = atof(command);
     Serial.println("Setting trigger temp");
     Serial.println(triggerTemp);
+  } else if (strcmp(topic, "BedCooler/SetTriggerHumidity") == 0) {
+    triggerHumidity = atoi(command);
+    Serial.println("Setting trigger humidity");
+    Serial.println(triggerHumidity);
   } else if (strcmp(topic, "BedCooler/SetSpeed") == 0) {
     fanspeed = atoi(command);
     analogWrite(motorSpeedPin, fanspeed);
@@ -80,6 +86,7 @@ void reconnect() {
       client.publish("BedCooler/LWT", "Online", true);
       
       client.subscribe("BedCooler/SetTriggerTemp"); //26.5
+      client.subscribe("BedCooler/SetTriggerHumidity"); //70
       client.subscribe("BedCooler/SetSpeed"); //128
       client.subscribe("BedCooler/SetMode"); //On Auto Off
     } else {
@@ -119,9 +126,10 @@ void loop() {
 
     if (mode == 1) {
       float temp = dht.readTemperature();
-  
-      Serial.println("Compare Temp to Trigger");
-      if (temp >= triggerTemp) {
+      int humidity = dht.readHumidity();
+      
+      Serial.println("Compare Temp/Humidity to Trigger");
+      if (temp >= triggerTemp || humidity >= triggerHumidity) {
         digitalWrite(motorPin, HIGH);
         analogWrite(motorSpeedPin, fanspeed);
       } else {
@@ -132,8 +140,7 @@ void loop() {
       char result[10];
       dtostrf(temp, 2, 1, result);
       client.publish("BedCooler/Temperature", result, true);
-  
-      dtostrf(dht.readHumidity(), 2, 0, result);
+      dtostrf(humidity, 2, 0, result);
       client.publish("BedCooler/Humidity", result, true);
     }
     
